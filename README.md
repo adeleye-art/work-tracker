@@ -1,4 +1,4 @@
-# Work Tracker
+# Devtrackr
 
 > Automatic work activity tracker for macOS — tracks your IDEs, meetings, and browser usage all day, then drops a polished Excel report on your desk at 6 PM with an AI-written summary of your day.
 
@@ -43,26 +43,29 @@ pip install devtrackr
 devtrackr init
 ```
 
-That's it. The wizard asks four questions, then installs and starts the tracker automatically.
+That's it. The wizard asks five questions, then installs and starts the tracker automatically.
 
 ```
 ──────────────────────────────────────────────────
-  Welcome to Work Tracker!
+  Welcome to Devtrackr!
 ──────────────────────────────────────────────────
 
-[1/4] Where are your git repos? (comma-separated paths)
+[1/5] Where are your git repos? (comma-separated paths)
       > ~/repos, ~/work/client-projects
 
-[2/4] Where should daily reports be saved?
+[2/5] Where should daily reports be saved?
       > ~/Documents/WorkReports
 
-[3/4] What time to generate the daily report? (24h)
+[3/5] What time to generate the daily report? (24h)
       > 18
 
-[4/4] Ollama model for AI summary?
-      > llama3.2:3b
+[4/5] Do you want an AI summary in your daily report?
+      (requires Ollama installed) [Y/n]: Y
 
-✅ Config saved → ~/.worktracker/config.toml
+[5/5] Which Ollama model should generate the summary? [llama3.2:3b]:
+        1. llama3.2:3b
+
+✅ Config saved → ~/.devtrackr/config.toml
 ✅ Background tracker started
 ✅ Daily reports scheduled at 18:00 Mon–Fri
 ✅ Reports will be saved to: ~/Documents/WorkReports
@@ -80,6 +83,10 @@ That's it. The wizard asks four questions, then installs and starts the tracker 
 | `devtrackr report --date 2026-05-15` | Generate report for a specific date |
 | `devtrackr start` | Start the background tracker |
 | `devtrackr stop` | Stop the background tracker |
+| `devtrackr config show` | View current configuration |
+| `devtrackr config add-repo ~/path` | Add a git repo folder to scan |
+| `devtrackr config set-report-time 17` | Change report time |
+| `devtrackr config set-model mistral:7b` | Change AI model |
 
 ---
 
@@ -98,13 +105,13 @@ Each daily report contains four sheets:
 
 ## Configuration
 
-Config lives at `~/.worktracker/config.toml`. Edit it any time:
+Config lives at `~/.devtrackr/config.toml`. Edit it any time, or use the `devtrackr config` commands:
 
 ```toml
 [paths]
 repos_dirs  = ["~/repos", "~/work"]   # scan multiple repo roots
 reports_dir = "~/Documents/WorkReports"
-db_path     = "~/.worktracker/logs.db"
+db_path     = "~/.devtrackr/logs.db"
 
 [tracker]
 poll_interval  = 10    # seconds between samples
@@ -140,7 +147,7 @@ devtrackr stop && devtrackr start
 ## Privacy
 
 Everything stays on your Mac:
-- Activity data → `~/.worktracker/logs.db` (SQLite, only you can read it)
+- Activity data → `~/.devtrackr/logs.db` (SQLite, only you can read it)
 - Reports → your chosen folder
 - AI summary → processed by Ollama running locally, nothing sent to the cloud
 
@@ -161,7 +168,7 @@ devtrackr init
 
 ## ❤️ Support this project
 
-Work Tracker is free and open source. If it saves you time, consider buying me a coffee — it helps me keep working on it!
+Devtrackr is free and open source. If it saves you time, consider buying me a coffee — it helps me keep working on it!
 
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/adeleyealarape)
 [![GitHub Sponsors](https://img.shields.io/badge/Sponsor-%E2%9D%A4-%23db61a2.svg?style=for-the-badge&logo=GitHub&logoColor=white)](https://github.com/sponsors/adeleyealarape)
