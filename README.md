@@ -4,7 +4,7 @@
 
 [![PyPI version](https://img.shields.io/pypi/v/work-tracker)](https://pypi.org/project/work-tracker/)
 [![Python](https://img.shields.io/pypi/pyversions/work-tracker)](https://pypi.org/project/work-tracker/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/adeleyealarape)
 
 ---
@@ -151,7 +151,7 @@ Everything stays on your Mac:
 Pull requests are welcome! Please open an issue first to discuss what you'd like to change.
 
 ```bash
-git clone https://github.com/adeleyealarape/work-tracker
+git clone https://github.com/adeleye-art/work-tracker
 cd work-tracker
 pip install -e .
 worktracker init
@@ -170,4 +170,4 @@ Work Tracker is free and open source. If it saves you time, consider buying me a
 
 ## License
 
-[MIT](LICENSE) © 2026 Adeleye Alarape
+[GNU GPL v3](LICENSE) © 2026 Adeleye Alarape

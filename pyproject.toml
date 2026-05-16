@@ -34,8 +34,8 @@ dependencies = [
 worktracker = "worktracker.cli:main"
 
 [project.urls]
-Homepage    = "https://github.com/adeleyealarape/work-tracker"
-Issues      = "https://github.com/adeleyealarape/work-tracker/issues"
+Homepage    = "https://github.com/adeleye-art/work-tracker"
+Issues      = "https://github.com/adeleye-art/work-tracker/issues"
 "Buy Me a Coffee" = "https://buymeacoffee.com/adeleyealarape"
 
 [tool.setuptools.packages.find]
