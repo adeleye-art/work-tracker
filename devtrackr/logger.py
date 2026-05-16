@@ -162,7 +162,7 @@ def main():
 
     os.makedirs(os.path.dirname(db_path), exist_ok=True)
     conn = init_db(db_path)
-    print(f"[{datetime.now():%Y-%m-%d %H:%M:%S}] Work Tracker started")
+    print(f"[{datetime.now():%Y-%m-%d %H:%M:%S}] Devtrackr started")
 
     try:
         while True:

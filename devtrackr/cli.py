@@ -19,7 +19,7 @@ REPORTER_PLIST = PLIST_DIR / f"{REPORTER_LABEL}.plist"
 @click.group()
 @click.version_option(__version__, prog_name="devtrackr")
 def main():
-    """Work Tracker — automatic activity tracker with AI-powered daily Excel reports."""
+    """Devtrackr — automatic activity tracker with AI-powered daily Excel reports."""
     pass
 
 
@@ -29,7 +29,7 @@ def main():
 def init():
     """Interactive setup wizard. Run this once after installing."""
     click.echo("\n" + "─" * 50)
-    click.echo("  Welcome to Work Tracker!")
+    click.echo("  Welcome to Devtrackr!")
     click.echo("─" * 50 + "\n")
 
     repos_raw = click.prompt(
