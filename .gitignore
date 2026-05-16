@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.eggs/
+*.whl
+
+# Tracker runtime files (personal data — never commit these)
+*.log
+*.err
+logs.db
+
+# Daily reports (personal data)
+*.xlsx
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+
+# Claude AI workspace
+.claude/

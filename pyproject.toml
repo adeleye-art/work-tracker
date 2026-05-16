@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "work-tracker"
+version = "0.1.0"
+description = "Automatic work activity tracker with AI-powered daily Excel reports"
+readme = "README.md"
+license = { text = "GPL-3.0-or-later" }
+requires-python = ">=3.9"
+keywords = ["productivity", "time-tracking", "activity-tracker", "developer-tools", "ollama"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: MacOS X",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: MacOS",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business :: Scheduling",
+]
+dependencies = [
+    "click>=8.0",
+    "openpyxl>=3.0",
+    "requests>=2.28",
+    "tomli>=2.0; python_version < '3.11'",
+]
+
+[project.scripts]
+worktracker = "worktracker.cli:main"
+
+[project.urls]
+Homepage    = "https://github.com/adeleyealarape/work-tracker"
+Issues      = "https://github.com/adeleyealarape/work-tracker/issues"
+"Buy Me a Coffee" = "https://buymeacoffee.com/adeleyealarape"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["worktracker*"]
