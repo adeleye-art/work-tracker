@@ -107,6 +107,100 @@ def init():
     click.echo("\nYou're all set! Run `worktracker status` to confirm.\n")
 
 
+# ── config ────────────────────────────────────────────────────────────────────
+
+@main.group()
+def config_cmd():
+    """View and update your configuration."""
+    pass
+
+# register as 'worktracker config'
+main.add_command(config_cmd, name="config")
+
+
+@config_cmd.command("show")
+def config_show():
+    """Print your current configuration."""
+    if not config.exists():
+        click.echo("No config found. Run `worktracker init` first.", err=True)
+        return
+    click.echo(config.CONFIG_FILE.read_text())
+
+
+@config_cmd.command("add-repo")
+@click.argument("path")
+def config_add_repo(path):
+    """Add a folder to scan for git repos.
+
+    Example: worktracker config add-repo ~/my-projects
+    """
+    cfg = config.load()
+    expanded = os.path.expanduser(path)
+    raw_list = cfg["paths"]["repos_dirs"]
+
+    if expanded in raw_list or path in raw_list:
+        click.echo(f"Already in repos list: {path}")
+        return
+
+    raw_list.append(path)
+    cfg["paths"]["repos_dirs"] = raw_list
+    config.save(cfg)
+    click.echo(f"✅ Added: {path}")
+    click.echo("Repos now scanned:")
+    for r in raw_list:
+        click.echo(f"  • {r}")
+
+
+@config_cmd.command("remove-repo")
+@click.argument("path")
+def config_remove_repo(path):
+    """Remove a folder from the repo scan list.
+
+    Example: worktracker config remove-repo ~/old-projects
+    """
+    cfg = config.load()
+    expanded = os.path.expanduser(path)
+    raw_list = cfg["paths"]["repos_dirs"]
+    filtered = [r for r in raw_list if r != path and os.path.expanduser(r) != expanded]
+
+    if len(filtered) == len(raw_list):
+        click.echo(f"Not found in repos list: {path}", err=True)
+        return
+
+    cfg["paths"]["repos_dirs"] = filtered
+    config.save(cfg)
+    click.echo(f"Removed: {path}")
+
+
+@config_cmd.command("set-report-time")
+@click.argument("hour", type=click.IntRange(0, 23))
+def config_set_report_time(hour):
+    """Change the daily report time (24h).
+
+    Example: worktracker config set-report-time 17
+    """
+    cfg = config.load()
+    cfg["tracker"]["report_hour"] = hour
+    config.save(cfg)
+    _install_launchd(hour)
+    _load_agents()
+    click.echo(f"✅ Report time updated to {hour:02d}:00 Mon–Fri")
+
+
+@config_cmd.command("set-model")
+@click.argument("model")
+def config_set_model(model):
+    """Change the Ollama AI model.
+
+    Example: worktracker config set-model mistral:7b
+    """
+    cfg = config.load()
+    cfg["ai"]["ollama_model"] = model
+    cfg["ai"]["ollama_enabled"] = True
+    config.save(cfg)
+    click.echo(f"✅ AI model set to: {model}")
+
+
 # ── start / stop ──────────────────────────────────────────────────────────────
 
 @main.command()
