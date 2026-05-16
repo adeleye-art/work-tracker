@@ -30,4 +30,4 @@ jobs:
         run: python -m compileall worktracker/
 
       - name: Check CLI loads
-        run: worktracker --help
+        run: devtrackr --help
