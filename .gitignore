@@ -1,4 +1,4 @@
-# Python
+# Python build artifacts
 __pycache__/
 *.pyc
 *.pyo
