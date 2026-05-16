@@ -10,14 +10,14 @@ from . import config
 from . import __version__
 
 PLIST_DIR      = Path.home() / "Library" / "LaunchAgents"
-LOGGER_LABEL   = "com.worktracker.logger"
-REPORTER_LABEL = "com.worktracker.reporter"
+LOGGER_LABEL   = "com.devtrackr.logger"
+REPORTER_LABEL = "com.devtrackr.reporter"
 LOGGER_PLIST   = PLIST_DIR / f"{LOGGER_LABEL}.plist"
 REPORTER_PLIST = PLIST_DIR / f"{REPORTER_LABEL}.plist"
 
 
 @click.group()
-@click.version_option(__version__, prog_name="worktracker")
+@click.version_option(__version__, prog_name="devtrackr")
 def main():
     """Work Tracker — automatic activity tracker with AI-powered daily Excel reports."""
     pass
@@ -80,7 +80,7 @@ def init():
         "paths": {
             "repos_dirs":  repos_list,
             "reports_dir": reports_dir,
-            "db_path":     "~/.worktracker/logs.db",
+            "db_path":     "~/.devtrackr/logs.db",
         },
         "tracker": {
             "poll_interval":  10,
@@ -104,25 +104,22 @@ def init():
     click.echo("✅ Background tracker started")
     click.echo(f"✅ Daily reports scheduled at {report_hour:02d}:00 Mon–Fri")
     click.echo(f"✅ Reports will be saved to: {os.path.expanduser(reports_dir)}")
-    click.echo("\nYou're all set! Run `worktracker status` to confirm.\n")
+    click.echo("\nYou're all set! Run `devtrackr status` to confirm.\n")
 
 
 # ── config ────────────────────────────────────────────────────────────────────
 
-@main.group()
+@main.group(name="config")
 def config_cmd():
     """View and update your configuration."""
     pass
-
-# register as 'worktracker config'
-main.add_command(config_cmd, name="config")
 
 
 @config_cmd.command("show")
 def config_show():
     """Print your current configuration."""
     if not config.exists():
-        click.echo("No config found. Run `worktracker init` first.", err=True)
+        click.echo("No config found. Run `devtrackr init` first.", err=True)
         return
     click.echo(config.CONFIG_FILE.read_text())
 
@@ -132,7 +129,7 @@ def config_show():
 def config_add_repo(path):
     """Add a folder to scan for git repos.
 
-    Example: worktracker config add-repo ~/my-projects
+    Example: devtrackr config add-repo ~/my-projects
     """
     cfg = config.load()
     expanded = os.path.expanduser(path)
@@ -156,7 +153,7 @@ def config_add_repo(path):
 def config_remove_repo(path):
     """Remove a folder from the repo scan list.
 
-    Example: worktracker config remove-repo ~/old-projects
+    Example: devtrackr config remove-repo ~/old-projects
     """
     cfg = config.load()
     expanded = os.path.expanduser(path)
@@ -177,7 +174,7 @@ def config_remove_repo(path):
 def config_set_report_time(hour):
     """Change the daily report time (24h).
 
-    Example: worktracker config set-report-time 17
+    Example: devtrackr config set-report-time 17
     """
     cfg = config.load()
     cfg["tracker"]["report_hour"] = hour
@@ -192,7 +189,7 @@ def config_set_report_time(hour):
 def config_set_model(model):
     """Change the Ollama AI model.
 
-    Example: worktracker config set-model mistral:7b
+    Example: devtrackr config set-model mistral:7b
     """
     cfg = config.load()
     cfg["ai"]["ollama_model"] = model
@@ -207,7 +204,7 @@ def config_set_model(model):
 def start():
     """Start the background tracker."""
     if not config.exists():
-        click.echo("No config found. Run `worktracker init` first.", err=True)
+        click.echo("No config found. Run `devtrackr init` first.", err=True)
         raise SystemExit(1)
     _load_agents()
     click.echo("✅ Tracker started.")
@@ -245,7 +242,7 @@ def status():
     click.echo(f"Tracker : {'🟢 Running' if running else '🔴 Stopped'}")
 
     if not config.exists():
-        click.echo("Config  : not found — run `worktracker init`")
+        click.echo("Config  : not found — run `devtrackr init`")
         return
 
     click.echo(f"Config  : {config.CONFIG_FILE}")
@@ -293,7 +290,7 @@ def _install_launchd(report_hour: int):
     """Write launchd plist files using the current Python interpreter."""
     PLIST_DIR.mkdir(parents=True, exist_ok=True)
     python   = sys.executable
-    log_dir  = Path.home() / ".worktracker"
+    log_dir  = Path.home() / ".devtrackr"
     log_dir.mkdir(parents=True, exist_ok=True)
 
     LOGGER_PLIST.write_text(
@@ -307,7 +304,7 @@ def _install_launchd(report_hour: int):
     <array>
         <string>{python}</string>
         <string>-m</string>
-        <string>worktracker.logger</string>
+        <string>devtrackr.logger</string>
     </array>
     <key>RunAtLoad</key><true/>
     <key>KeepAlive</key><true/>
@@ -337,7 +334,7 @@ def _install_launchd(report_hour: int):
     <array>
         <string>{python}</string>
         <string>-m</string>
-        <string>worktracker.reporter</string>
+        <string>devtrackr.reporter</string>
     </array>
     <key>StartCalendarInterval</key>
     <array>

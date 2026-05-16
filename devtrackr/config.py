@@ -9,14 +9,14 @@ except ImportError:
     except ImportError:
         tomllib = None
 
-CONFIG_DIR  = Path.home() / ".worktracker"
+CONFIG_DIR  = Path.home() / ".devtrackr"
 CONFIG_FILE = CONFIG_DIR / "config.toml"
 
 DEFAULTS = {
     "paths": {
         "repos_dirs":  ["~/repos"],
         "reports_dir": "~/Documents/WorkReports",
-        "db_path":     "~/.worktracker/logs.db",
+        "db_path":     "~/.devtrackr/logs.db",
     },
     "tracker": {
         "poll_interval":   10,
@@ -52,7 +52,7 @@ def load():
 
 
 def save(cfg: dict):
-    """Write cfg dict to ~/.worktracker/config.toml."""
+    """Write cfg dict to ~/.devtrackr/config.toml."""
     CONFIG_DIR.mkdir(parents=True, exist_ok=True)
     lines = []
     for section, values in cfg.items():

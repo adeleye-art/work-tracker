@@ -40,7 +40,7 @@ pip install devtrackr
 ## Quick start
 
 ```bash
-worktracker init
+devtrackr init
 ```
 
 That's it. The wizard asks four questions, then installs and starts the tracker automatically.
@@ -74,12 +74,12 @@ That's it. The wizard asks four questions, then installs and starts the tracker 
 
 | Command | Description |
 |---|---|
-| `worktracker init` | First-time setup wizard |
-| `worktracker status` | Show running status and last recorded activity |
-| `worktracker report` | Generate today's report right now |
-| `worktracker report --date 2026-05-15` | Generate report for a specific date |
-| `worktracker start` | Start the background tracker |
-| `worktracker stop` | Stop the background tracker |
+| `devtrackr init` | First-time setup wizard |
+| `devtrackr status` | Show running status and last recorded activity |
+| `devtrackr report` | Generate today's report right now |
+| `devtrackr report --date 2026-05-15` | Generate report for a specific date |
+| `devtrackr start` | Start the background tracker |
+| `devtrackr stop` | Stop the background tracker |
 
 ---
 
@@ -120,7 +120,7 @@ ollama_url     = "http://localhost:11434"
 After editing, restart the tracker:
 
 ```bash
-worktracker stop && worktracker start
+devtrackr stop && devtrackr start
 ```
 
 ---
@@ -154,7 +154,7 @@ Pull requests are welcome! Please open an issue first to discuss what you'd like
 git clone https://github.com/adeleye-art/devtrackr
 cd devtrackr
 pip install -e .
-worktracker init
+devtrackr init
 ```
 
 ---

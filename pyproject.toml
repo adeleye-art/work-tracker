@@ -31,7 +31,7 @@ dependencies = [
 ]
 
 [project.scripts]
-worktracker = "worktracker.cli:main"
+devtrackr = "devtrackr.cli:main"
 
 [project.urls]
 Homepage    = "https://github.com/adeleye-art/devtrackr"
@@ -40,4 +40,4 @@ Issues      = "https://github.com/adeleye-art/devtrackr/issues"
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["worktracker*"]
+include = ["devtrackr*"]
