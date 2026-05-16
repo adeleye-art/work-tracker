@@ -2,8 +2,8 @@
 
 > Automatic work activity tracker for macOS — tracks your IDEs, meetings, and browser usage all day, then drops a polished Excel report on your desk at 6 PM with an AI-written summary of your day.
 
-[![PyPI version](https://img.shields.io/pypi/v/work-tracker)](https://pypi.org/project/work-tracker/)
-[![Python](https://img.shields.io/pypi/pyversions/work-tracker)](https://pypi.org/project/work-tracker/)
+[![PyPI version](https://img.shields.io/pypi/v/devtrackr)](https://pypi.org/project/devtrackr/)
+[![Python](https://img.shields.io/pypi/pyversions/devtrackr)](https://pypi.org/project/devtrackr/)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/adeleyealarape)
 
@@ -32,7 +32,7 @@
 ## Install
 
 ```bash
-pip install work-tracker
+pip install devtrackr
 ```
 
 ---
@@ -151,8 +151,8 @@ Everything stays on your Mac:
 Pull requests are welcome! Please open an issue first to discuss what you'd like to change.
 
 ```bash
-git clone https://github.com/adeleye-art/work-tracker
-cd work-tracker
+git clone https://github.com/adeleye-art/devtrackr
+cd devtrackr
 pip install -e .
 worktracker init
 ```

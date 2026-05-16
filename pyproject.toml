@@ -3,7 +3,7 @@ requires = ["setuptools>=42", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "work-tracker"
+name = "devtrackr"
 version = "0.1.0"
 description = "Automatic work activity tracker with AI-powered daily Excel reports"
 readme = "README.md"
@@ -34,8 +34,8 @@ dependencies = [
 worktracker = "worktracker.cli:main"
 
 [project.urls]
-Homepage    = "https://github.com/adeleye-art/work-tracker"
-Issues      = "https://github.com/adeleye-art/work-tracker/issues"
+Homepage    = "https://github.com/adeleye-art/devtrackr"
+Issues      = "https://github.com/adeleye-art/devtrackr/issues"
 "Buy Me a Coffee" = "https://buymeacoffee.com/adeleyealarape"
 
 [tool.setuptools.packages.find]
